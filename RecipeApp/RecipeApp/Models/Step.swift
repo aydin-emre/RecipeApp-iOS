@@ -9,8 +9,8 @@ import Foundation
 
 struct Step: Codable {
 
-    let stepDescription: String
-    let imageUrls: [String]
+    let stepDescription: String?
+    let imageUrls: [String]?
 
     enum CodingKeys: String, CodingKey {
         case stepDescription = "description"

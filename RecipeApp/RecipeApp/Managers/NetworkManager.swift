@@ -12,6 +12,7 @@ import EAAlert
 private let baseURL: String = "https://cookpad.github.io/global-mobile-hiring/api/"
 
 private let allRecipesPath = "recipes/"
+private let allCollectionsPath = "collections/"
 
 class NetworkManager {
 
@@ -88,6 +89,18 @@ class NetworkManager {
                 viewLoading.isHidden = true
             }
             eaAlert.show()
+        }
+    }
+
+    func getAllCollections(completion: @escaping (Result<Collections, Error>) -> Void) {
+        request(of: Collections.self, forPath: allCollectionsPath, method: .get, showLoadingView: true) { response, error in
+            if let response = response as? Collections {
+                completion(.success(response))
+            } else if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.failure(NetworkError.objectParseError))
+            }
         }
     }
 

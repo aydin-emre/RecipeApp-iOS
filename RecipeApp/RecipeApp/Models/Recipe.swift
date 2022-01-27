@@ -7,15 +7,18 @@
 
 import Foundation
 
+typealias Recipes = [Recipe]
+
 struct Recipe: Codable {
 
-    let id: Int
-    let title, story: String
+    let id: Int?
+    let title: String?
+    let story: String?
     let imageURL: String?
-    let publishedAt: String
-    let user: User
-    let ingredients: [String]
-    let steps: [Step]
+    let publishedAt: String?
+    let user: User?
+    let ingredients: [String]?
+    let steps: [Step]?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -29,5 +32,3 @@ struct Recipe: Codable {
     }
 
 }
-
-typealias Recipes = [Recipe]
