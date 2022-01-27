@@ -7,4 +7,4 @@
 
 import UIKit
 
-let appColor = UIColor(red: 2/255.0, green: 119/255.0, blue: 189/255.0, alpha: 1)
+let appColor = UIColor(red: 242/255.0, green: 157/255.0, blue: 75/255.0, alpha: 1)
