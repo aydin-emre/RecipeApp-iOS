@@ -13,6 +13,7 @@ private let baseURL: String = "https://cookpad.github.io/global-mobile-hiring/ap
 
 private let allRecipesPath = "recipes/"
 private let allCollectionsPath = "collections/"
+private let collectionRecipesPath = "collections/%@/recipes"
 
 class NetworkManager {
 
@@ -20,11 +21,18 @@ class NetworkManager {
 
     static var shared = NetworkManager()
 
-    public var shouldShowLogs = true
+    var shouldShowLogs = true
 
     var eaAlert: EAAlert?
 
-    private func request<T: Decodable>(of type: T.Type, forPath path: String, method: HTTPMethod = .post, parameters: Parameters? = nil, encoding: ParameterEncoding = URLEncoding.default, headers: HTTPHeaders? = nil, showLoadingView: Bool = false, completion: @escaping (Decodable?, Error?) -> Void) {
+    private func request<T: Decodable>(of type: T.Type,
+                                       forPath path: String,
+                                       method: HTTPMethod = .post,
+                                       parameters: Parameters? = nil,
+                                       encoding: ParameterEncoding = URLEncoding.default,
+                                       headers: HTTPHeaders? = nil,
+                                       showLoadingView: Bool = false,
+                                       completion: @escaping (Decodable?, Error?) -> Void) {
         var viewLoading: UIView!
         if showLoadingView {
             viewLoading = loadingView()
@@ -93,7 +101,10 @@ class NetworkManager {
     }
 
     func getAllCollections(completion: @escaping (Result<Collections, Error>) -> Void) {
-        request(of: Collections.self, forPath: allCollectionsPath, method: .get, showLoadingView: true) { response, error in
+        request(of: Collections.self,
+                forPath: allCollectionsPath,
+                method: .get,
+                showLoadingView: true) { response, error in
             if let response = response as? Collections {
                 completion(.success(response))
             } else if let error = error {
@@ -104,8 +115,26 @@ class NetworkManager {
         }
     }
 
+    func getCollectionRecipes(with collectionId: Int, completion: @escaping (Result<Recipes, Error>) -> Void) {
+        request(of: Recipes.self,
+                forPath: String(format: collectionRecipesPath, String(collectionId)),
+                method: .get,
+                showLoadingView: true) { response, error in
+            if let response = response as? Recipes {
+                completion(.success(response))
+            } else if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.failure(NetworkError.objectParseError))
+            }
+        }
+    }
+
     func getAllRecipes(completion: @escaping (Result<Recipes, Error>) -> Void) {
-        request(of: Recipes.self, forPath: allRecipesPath, method: .get, showLoadingView: true) { response, error in
+        request(of: Recipes.self,
+                forPath: allRecipesPath,
+                method: .get,
+                showLoadingView: true) { response, error in
             if let response = response as? Recipes {
                 completion(.success(response))
             } else if let error = error {

@@ -29,14 +29,14 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionsCollectionViewCell" id="HMc-fU-DRm" customClass="CollectionsCollectionViewCell" customModule="RecipeApp" customModuleProvider="target">
-                                        <rect key="frame" x="56" y="0.0" width="302" height="407"/>
+                                        <rect key="frame" x="57" y="0.0" width="300" height="400"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CKz-gP-vFY">
-                                            <rect key="frame" x="0.0" y="0.0" width="302" height="407"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zSO-D4-Nz8" customClass="CardView" customModule="RecipeApp" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="302" height="407"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
                                             </subviews>
@@ -49,7 +49,7 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                        <size key="customSize" width="302" height="407"/>
+                                        <size key="customSize" width="300" height="400"/>
                                         <connections>
                                             <outlet property="cardView" destination="zSO-D4-Nz8" id="lyc-ZN-VhM"/>
                                         </connections>
@@ -74,6 +74,69 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="120.53571428571428"/>
+        </scene>
+        <!--Recipes View Controller-->
+        <scene sceneID="gZk-tF-vPx">
+            <objects>
+                <viewController storyboardIdentifier="RecipesViewController" id="WHl-VL-UjH" customClass="RecipesViewController" customModule="RecipeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="blU-4s-zh4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a59-pO-C27">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LfJ-QT-odZ">
+                                    <size key="itemSize" width="297" height="300"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecipesCollectionViewCell" id="gdV-YF-iQB" customClass="RecipesCollectionViewCell" customModule="RecipeApp" customModuleProvider="target">
+                                        <rect key="frame" x="57" y="0.0" width="300" height="300"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="y8h-jh-GtO">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GXn-Vp-NBZ" customClass="RecipeView" customModule="RecipeApp" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="GXn-Vp-NBZ" secondAttribute="trailing" id="Mz6-GU-BAW"/>
+                                                <constraint firstItem="GXn-Vp-NBZ" firstAttribute="top" secondItem="y8h-jh-GtO" secondAttribute="top" id="sfx-qW-SAi"/>
+                                                <constraint firstAttribute="bottom" secondItem="GXn-Vp-NBZ" secondAttribute="bottom" id="teb-V8-aCQ"/>
+                                                <constraint firstItem="GXn-Vp-NBZ" firstAttribute="leading" secondItem="y8h-jh-GtO" secondAttribute="leading" id="vdK-OF-5hv"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="300" height="300"/>
+                                        <connections>
+                                            <outlet property="recipeView" destination="GXn-Vp-NBZ" id="e6s-me-8h9"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Eul-gD-I78"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="a59-pO-C27" firstAttribute="top" secondItem="blU-4s-zh4" secondAttribute="top" id="8Lg-JL-fwG"/>
+                            <constraint firstItem="a59-pO-C27" firstAttribute="leading" secondItem="Eul-gD-I78" secondAttribute="leading" id="Djn-Aa-3vR"/>
+                            <constraint firstItem="a59-pO-C27" firstAttribute="trailing" secondItem="Eul-gD-I78" secondAttribute="trailing" id="F5X-WK-L61"/>
+                            <constraint firstAttribute="bottom" secondItem="a59-pO-C27" secondAttribute="bottom" id="vXd-0Y-Kj4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="a59-pO-C27" id="bJh-u5-HVU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NyB-s7-fs0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1917" y="121"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="c7F-RT-kfY">

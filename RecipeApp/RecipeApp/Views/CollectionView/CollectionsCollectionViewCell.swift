@@ -14,8 +14,7 @@ class CollectionsCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-//        self.round()
-//        self.addBorder(color: .black, radius: 8, borderWidth: 0.5)
+        self.round(radius: 16, masksToBounds: true)
     }
 
     func configure(with collection: Collection) {
@@ -34,6 +33,9 @@ class CollectionsCollectionViewCell: UICollectionViewCell {
         }
         cardView.titleLabel.text = collection.title
         cardView.descriptionLabel.text = collection.collectionDescription
+        if let recipeCount = collection.recipeCount {
+            cardView.recipeCount = recipeCount
+        }
     }
 
 }

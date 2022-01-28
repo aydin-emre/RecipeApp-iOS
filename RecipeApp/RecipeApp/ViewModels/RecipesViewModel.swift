@@ -11,10 +11,10 @@ import RxCocoa
 
 class RecipesViewModel {
 
-    public let recipes: PublishSubject<Recipes> = PublishSubject()
-    public let error: PublishSubject<String> = PublishSubject()
+    let recipes: PublishSubject<Recipes> = PublishSubject()
+    let error: PublishSubject<String> = PublishSubject()
 
-    public func requestData() {
+    func requestData() {
         NetworkManager.shared.getAllRecipes { result in
             switch result {
             case .success(let response):
