@@ -18,26 +18,20 @@ class RecipesCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(with recipe: Recipe) {
-//        DispatchQueue.global(qos: .background).async {
-            if let imageURL = recipe.imageURL,
-               let url = URL(string: imageURL) {
-                self.recipeView.imageView.sd_setImage(with: url,
-                                                 placeholderImage: UIImage(named: "preview"),
-                                                      options: .continueInBackground) { _, _, _ in
-//                    DispatchQueue.main.async {
-                        self.recipeView.activityIndicator.startAnimating()
-//                    }
-                } completed: { _, _, _, _ in
-                    self.recipeView.activityIndicator.stopAnimating()
-                }
+        if let imageURL = recipe.imageURL,
+           let url = URL(string: imageURL) {
+            self.recipeView.imageView.sd_setImage(with: url,
+                                                  placeholderImage: UIImage(named: "preview"),
+                                                  options: .continueInBackground) { _, _, _ in
+                self.recipeView.activityIndicator.startAnimating()
+            } completed: { _, _, _, _ in
+                self.recipeView.activityIndicator.stopAnimating()
             }
-            if let imageURL = recipe.user?.imageURL,
-               let url = URL(string: imageURL) {
-//                DispatchQueue.main.async {
-                    self.recipeView.userImageView.sd_setImage(with: url)
-//                }
-            }
-//        }
+        }
+        if let imageURL = recipe.user?.imageURL,
+           let url = URL(string: imageURL) {
+            self.recipeView.userImageView.sd_setImage(with: url)
+        }
         recipeView.titleLabel.text = recipe.title
         recipeView.descriptionLabel.text = recipe.story
         recipeView.usernameLabel.text = recipe.user?.name

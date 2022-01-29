@@ -13,8 +13,8 @@ class CollectionsViewController: BaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
-    let collectionsViewModel = CollectionsViewModel()
-    let disposeBag = DisposeBag()
+    private let collectionsViewModel = CollectionsViewModel()
+    private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +46,7 @@ class CollectionsViewController: BaseViewController {
             .disposed(by: disposeBag)
 
         let flowLayout = UICollectionViewFlowLayout()
-        let width = (view.frame.size.width) - 16
+        let width = view.frame.size.width - 16
         let height = width + 120
         flowLayout.itemSize = CGSize(width: width, height: height)
         collectionView.setCollectionViewLayout(flowLayout, animated: true)
@@ -58,11 +58,10 @@ class CollectionsViewController: BaseViewController {
             .subscribe(onNext: { [unowned self] model in
                 print(model)
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                if let viewController = storyBoard.instantiateViewController(withIdentifier: "RecipesViewController")
-                    as? RecipesViewController {
-                    viewController.collection = model
-                    self.navigationController?.pushViewController(viewController, animated: true)
+                let viewController = storyBoard.instantiateViewController(identifier: "RecipesViewController") { coder in
+                    RecipesViewController(coder: coder, viewModel: RecipesViewModel(recipesRepository: NetworkRecipesRepository(), collectionId: model.id))
                 }
+                self.navigationController?.pushViewController(viewController, animated: true)
             }).disposed(by: disposeBag)
     }
 

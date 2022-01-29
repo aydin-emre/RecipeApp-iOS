@@ -8,3 +8,4 @@
 import UIKit
 
 let appColor = UIColor(red: 242/255.0, green: 157/255.0, blue: 75/255.0, alpha: 1)
+let lightGrayColor = UIColor(red: 234/255.0, green: 234/255.0, blue: 234/255.0, alpha: 1)

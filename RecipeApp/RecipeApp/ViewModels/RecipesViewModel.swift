@@ -9,13 +9,19 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class RecipesViewModel {
+class RecipesViewModel: BaseViewModel {
 
     let recipes: PublishSubject<Recipes> = PublishSubject()
-    let error: PublishSubject<String> = PublishSubject()
+    private let recipesRepository: RecipesRepository
+    private let collectionId: Int?
+
+    init(recipesRepository: RecipesRepository, collectionId: Int? = nil) {
+        self.recipesRepository = recipesRepository
+        self.collectionId = collectionId
+    }
 
     func requestData() {
-        NetworkManager.shared.getAllRecipes { result in
+        recipesRepository.getRecipes(collectionId: collectionId) { result in
             switch result {
             case .success(let response):
                 self.recipes.onNext(response)

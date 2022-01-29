@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Collections View Controller-->
+        <!--Collections-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="CollectionsViewController" id="BYZ-38-t0r" customClass="CollectionsViewController" customModule="RecipeApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -66,6 +66,7 @@
                             <constraint firstItem="3AX-ws-ZGB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="VYq-wt-SzN"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Collections" image="collections" id="nGL-fN-6lh"/>
                     <navigationItem key="navigationItem" id="Ahr-th-SBc"/>
                     <connections>
                         <outlet property="collectionView" destination="3AX-ws-ZGB" id="YrM-yl-BiA"/>
@@ -73,70 +74,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="120.53571428571428"/>
-        </scene>
-        <!--Recipes View Controller-->
-        <scene sceneID="gZk-tF-vPx">
-            <objects>
-                <viewController storyboardIdentifier="RecipesViewController" id="WHl-VL-UjH" customClass="RecipesViewController" customModule="RecipeApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="blU-4s-zh4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a59-pO-C27">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LfJ-QT-odZ">
-                                    <size key="itemSize" width="297" height="300"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecipesCollectionViewCell" id="gdV-YF-iQB" customClass="RecipesCollectionViewCell" customModule="RecipeApp" customModuleProvider="target">
-                                        <rect key="frame" x="57" y="0.0" width="300" height="300"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="y8h-jh-GtO">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GXn-Vp-NBZ" customClass="RecipeView" customModule="RecipeApp" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                </view>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="GXn-Vp-NBZ" secondAttribute="trailing" id="Mz6-GU-BAW"/>
-                                                <constraint firstItem="GXn-Vp-NBZ" firstAttribute="top" secondItem="y8h-jh-GtO" secondAttribute="top" id="sfx-qW-SAi"/>
-                                                <constraint firstAttribute="bottom" secondItem="GXn-Vp-NBZ" secondAttribute="bottom" id="teb-V8-aCQ"/>
-                                                <constraint firstItem="GXn-Vp-NBZ" firstAttribute="leading" secondItem="y8h-jh-GtO" secondAttribute="leading" id="vdK-OF-5hv"/>
-                                            </constraints>
-                                        </collectionViewCellContentView>
-                                        <size key="customSize" width="300" height="300"/>
-                                        <connections>
-                                            <outlet property="recipeView" destination="GXn-Vp-NBZ" id="e6s-me-8h9"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Eul-gD-I78"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="a59-pO-C27" firstAttribute="top" secondItem="blU-4s-zh4" secondAttribute="top" id="8Lg-JL-fwG"/>
-                            <constraint firstItem="a59-pO-C27" firstAttribute="leading" secondItem="Eul-gD-I78" secondAttribute="leading" id="Djn-Aa-3vR"/>
-                            <constraint firstItem="a59-pO-C27" firstAttribute="trailing" secondItem="Eul-gD-I78" secondAttribute="trailing" id="F5X-WK-L61"/>
-                            <constraint firstAttribute="bottom" secondItem="a59-pO-C27" secondAttribute="bottom" id="vXd-0Y-Kj4"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="collectionView" destination="a59-pO-C27" id="bJh-u5-HVU"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NyB-s7-fs0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1917" y="121"/>
+            <point key="canvasLocation" x="1938" y="846"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="c7F-RT-kfY">
@@ -149,15 +87,100 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="rpX-t9-yQT"/>
+                        <segue destination="xO0-lY-M3E" kind="relationship" relationship="rootViewController" id="rpX-t9-yQT"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ifl-ba-iop" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="120.53571428571428"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="oy5-78-trq">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="xO0-lY-M3E" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="F6Y-dq-aZV"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AiO-iK-0En">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="vPA-YB-bmU"/>
+                        <segue destination="D29-FI-U3Z" kind="relationship" relationship="viewControllers" id="H88-fA-YAm"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c0M-et-DyY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="120.53571428571428"/>
+        </scene>
+        <!--Recipes-->
+        <scene sceneID="utd-UV-52I">
+            <objects>
+                <viewController storyboardIdentifier="RecipesViewController" id="D29-FI-U3Z" customClass="RecipesViewController" customModule="RecipeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e7e-v7-xjg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cYV-YF-zDI">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="a5X-4V-c8j">
+                                    <size key="itemSize" width="297" height="300"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecipesCollectionViewCell" id="lsH-CT-zJJ" customClass="RecipesCollectionViewCell" customModule="RecipeApp" customModuleProvider="target">
+                                        <rect key="frame" x="57" y="0.0" width="300" height="300"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="9Y8-Xf-MM1">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pcI-Wp-86U" customClass="RecipeView" customModule="RecipeApp" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="pcI-Wp-86U" secondAttribute="bottom" id="733-7x-f3o"/>
+                                                <constraint firstItem="pcI-Wp-86U" firstAttribute="leading" secondItem="9Y8-Xf-MM1" secondAttribute="leading" id="RtE-Rb-NUA"/>
+                                                <constraint firstItem="pcI-Wp-86U" firstAttribute="top" secondItem="9Y8-Xf-MM1" secondAttribute="top" id="lLA-qU-Kmw"/>
+                                                <constraint firstAttribute="trailing" secondItem="pcI-Wp-86U" secondAttribute="trailing" id="uVb-sH-w1d"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="300" height="300"/>
+                                        <connections>
+                                            <outlet property="recipeView" destination="pcI-Wp-86U" id="hAC-LE-MDW"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2Mt-NM-yQG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cYV-YF-zDI" firstAttribute="top" secondItem="e7e-v7-xjg" secondAttribute="top" id="1bS-iO-1GC"/>
+                            <constraint firstItem="cYV-YF-zDI" firstAttribute="trailing" secondItem="2Mt-NM-yQG" secondAttribute="trailing" id="7A4-Y1-nx5"/>
+                            <constraint firstItem="cYV-YF-zDI" firstAttribute="leading" secondItem="2Mt-NM-yQG" secondAttribute="leading" id="Ikh-aY-K3D"/>
+                            <constraint firstAttribute="bottom" secondItem="cYV-YF-zDI" secondAttribute="bottom" id="huu-lQ-ofg"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Recipes" image="recipes" id="8XP-wq-coA"/>
+                    <connections>
+                        <outlet property="collectionView" destination="cYV-YF-zDI" id="abv-kH-dDf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MCe-rF-In2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1939" y="121"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="collections" width="25" height="25"/>
+        <image name="recipes" width="25" height="25"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

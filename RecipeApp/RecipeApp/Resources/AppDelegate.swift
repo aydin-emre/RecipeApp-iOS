@@ -15,11 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let navigationBarTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
                                                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 23)]
+        let tabBarItemTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
+                                             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)]
 
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().barTintColor = appColor
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().titleTextAttributes = navigationBarTitleTextAttributes
+
+        UITabBar.appearance().isTranslucent = false
+        UITabBar.appearance().barTintColor = appColor
+        UITabBar.appearance().tintColor = .white
+        UITabBar.appearance().unselectedItemTintColor = lightGrayColor
+        UITabBarItem.appearance().setTitleTextAttributes(tabBarItemTitleTextAttributes, for: .normal)
 
         if #available(iOS 15, *) {
             let appearance = UINavigationBarAppearance()
@@ -29,6 +37,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UINavigationBar.appearance().standardAppearance = appearance
             UINavigationBar.appearance().scrollEdgeAppearance = UINavigationBar.appearance().standardAppearance
 
+            let tabBarAppearance = UITabBarAppearance()
+            tabBarAppearance.configureWithOpaqueBackground()
+            tabBarAppearance.backgroundColor = appColor
+            tabBarAppearance.inlineLayoutAppearance.normal.iconColor = lightGrayColor
+            tabBarAppearance.inlineLayoutAppearance.normal.titleTextAttributes = tabBarItemTitleTextAttributes
+            tabBarAppearance.stackedLayoutAppearance.normal.iconColor = lightGrayColor
+            tabBarAppearance.stackedLayoutAppearance.normal.titleTextAttributes = tabBarItemTitleTextAttributes
+            tabBarAppearance.compactInlineLayoutAppearance.normal.iconColor = lightGrayColor
+            tabBarAppearance.compactInlineLayoutAppearance.normal.titleTextAttributes = tabBarItemTitleTextAttributes
+
+            UITabBar.appearance().standardAppearance = tabBarAppearance
             UITabBar.appearance().scrollEdgeAppearance = UITabBar.appearance().standardAppearance
         }
 

@@ -13,22 +13,33 @@ class RecipesViewController: BaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
-    let collectionsViewModel = CollectionsViewModel()
-    let disposeBag = DisposeBag()
-    var collection: Collection?
+    private let recipesViewModel: RecipesViewModel
+    private let disposeBag = DisposeBag()
+
+    // MARK: - Initialization
+
+    init?(coder: NSCoder, viewModel: RecipesViewModel) {
+        self.recipesViewModel = viewModel
+        super.init(coder: coder)
+    }
+
+    required init?(coder: NSCoder) {
+        recipesViewModel = RecipesViewModel(recipesRepository: NetworkRecipesRepository())
+        super.init(coder: coder)
+    }
+
+    // MARK: - View Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupBindings()
-        if let collectionId = collection?.id {
-            collectionsViewModel.requestData(with: collectionId)
-        }
+        recipesViewModel.requestData()
     }
 
     func setupBindings() {
         // Error Handling
-        collectionsViewModel
+        recipesViewModel
             .error
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { error in
@@ -38,7 +49,7 @@ class RecipesViewController: BaseViewController {
             .disposed(by: disposeBag)
 
         // Cards CollectionView
-        collectionsViewModel
+        recipesViewModel
             .recipes
             .observe(on: MainScheduler.instance)
             .bind(to: collectionView
