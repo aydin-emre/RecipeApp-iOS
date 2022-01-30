@@ -59,7 +59,7 @@ class CollectionsViewController: BaseViewController {
                 print(model)
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let viewController = storyBoard.instantiateViewController(identifier: "RecipesViewController") { coder in
-                    RecipesViewController(coder: coder, viewModel: RecipesViewModel(recipesRepository: NetworkRecipesRepository(), collectionId: model.id))
+                    RecipesViewController(coder: coder, viewModel: RecipesViewModel(collectionId: model.id))
                 }
                 self.navigationController?.pushViewController(viewController, animated: true)
             }).disposed(by: disposeBag)

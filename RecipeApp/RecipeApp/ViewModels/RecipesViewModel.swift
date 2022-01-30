@@ -12,16 +12,16 @@ import RxCocoa
 class RecipesViewModel: BaseViewModel {
 
     let recipes: PublishSubject<Recipes> = PublishSubject()
-    private let recipesRepository: RecipesRepository
+    private let recipesProtocol: RecipesProtocol
     private let collectionId: Int?
 
-    init(recipesRepository: RecipesRepository, collectionId: Int? = nil) {
-        self.recipesRepository = recipesRepository
+    init(_ recipesProtocol: RecipesProtocol = NetworkRecipes(), collectionId: Int? = nil) {
+        self.recipesProtocol = recipesProtocol
         self.collectionId = collectionId
     }
 
     func requestData() {
-        recipesRepository.getRecipes(collectionId: collectionId) { result in
+        recipesProtocol.getRecipes(collectionId: collectionId) { result in
             switch result {
             case .success(let response):
                 self.recipes.onNext(response)

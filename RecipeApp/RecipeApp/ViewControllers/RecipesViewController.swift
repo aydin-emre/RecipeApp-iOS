@@ -24,7 +24,7 @@ class RecipesViewController: BaseViewController {
     }
 
     required init?(coder: NSCoder) {
-        recipesViewModel = RecipesViewModel(recipesRepository: NetworkRecipesRepository())
+        recipesViewModel = RecipesViewModel()
         super.init(coder: coder)
     }
 
@@ -64,20 +64,6 @@ class RecipesViewController: BaseViewController {
         let height = view.frame.size.height / 6
         flowLayout.itemSize = CGSize(width: width, height: height)
         collectionView.setCollectionViewLayout(flowLayout, animated: true)
-
-        // CollectionView Selections
-        collectionView
-            .rx
-            .modelSelected(Collection.self)
-            .subscribe(onNext: { [unowned self] model in
-                print(model)
-//                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//                if let headlinesViewController = storyBoard.instantiateViewController(withIdentifier: "CardDetailViewController")
-//                    as? CardDetailViewController {
-//                    headlinesViewController.card = model
-//                    self.navigationController?.pushViewController(headlinesViewController, animated: true)
-//                }
-            }).disposed(by: disposeBag)
     }
 
 }

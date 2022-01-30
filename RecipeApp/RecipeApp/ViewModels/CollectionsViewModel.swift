@@ -12,9 +12,14 @@ import RxCocoa
 class CollectionsViewModel: BaseViewModel {
 
     let collections: PublishSubject<Collections> = PublishSubject()
+    private let collectionsProtocol: CollectionsProtocol
+
+    init(_ collectionsProtocol: CollectionsProtocol = NetworkCollections()) {
+        self.collectionsProtocol = collectionsProtocol
+    }
 
     func requestData() {
-        NetworkManager.shared.getAllCollections { result in
+        collectionsProtocol.getCollections { result in
             switch result {
             case .success(let response):
                 self.collections.onNext(response)

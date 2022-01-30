@@ -7,13 +7,11 @@
 
 import Foundation
 
-protocol RecipesRepository {
-
+protocol RecipesProtocol {
     func getRecipes(collectionId: Int?, completion: @escaping (Result<Recipes, Error>) -> Void)
-
 }
 
-class NetworkRecipesRepository: RecipesRepository {
+class NetworkRecipes: RecipesProtocol {
 
     func getRecipes(collectionId: Int? = nil, completion: @escaping (Result<Recipes, Error>) -> Void) {
         if let collectionId = collectionId {
@@ -29,10 +27,15 @@ class NetworkRecipesRepository: RecipesRepository {
 
 }
 
-class LocalRecipesRepository: RecipesRepository {
+class LocalRecipes: RecipesProtocol {
 
     func getRecipes(collectionId: Int? = nil, completion: @escaping (Result<Recipes, Error>) -> Void) {
-
+        let bundle = Bundle(for: type(of: self))
+        if let response = bundle.decode(fromJSON: "Recipes", of: Recipes.self) {
+            completion(.success(response))
+        } else {
+            completion(.failure(NetworkError.objectParseError))
+        }
     }
 
 }
