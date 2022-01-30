@@ -49,7 +49,6 @@ class CardView: UIView {
             cardViewImage.addBorder(color: .white, radius: 0, borderWidth: 1)
         }
         recipeCountContainerView.round()
-        recipeCountContainerView.addBorder(color: appColor, radius: 8, borderWidth: 0.5)
     }
 
 }

@@ -23,7 +23,43 @@ class NetworkManager {
 
     var shouldShowLogs = true
 
-    var eaAlert: EAAlert?
+    // MARK: - Custom Views
+
+    private var eaAlert: EAAlert?
+
+    private lazy var window = {
+       return UIApplication.shared.windows.filter({ $0.isKeyWindow }).first
+    }()
+
+    private lazy var loadingView: UIView? = {
+        guard let window = self.window else { return nil }
+        let windowBounds = window.bounds
+        let superview = UIView(frame: windowBounds)
+        superview.backgroundColor = UIColor(white: 1, alpha: 0.5)
+
+        let viewLoading = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        viewLoading.center = CGPoint(x: windowBounds.width/2, y: windowBounds.height/2)
+        viewLoading.backgroundColor = appColor
+        let activityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 15, y: 15, width: 20, height: 20))
+        if #available(iOS 13.0, *) {
+            activityIndicatorView.style = .large
+        } else {
+            activityIndicatorView.style = .whiteLarge
+        }
+        activityIndicatorView.startAnimating()
+        viewLoading.addSubview(activityIndicatorView)
+        viewLoading.layer.cornerRadius = 5
+        viewLoading.layer.shadowColor = UIColor.black.cgColor
+        viewLoading.layer.shadowOpacity = 0.66
+        viewLoading.layer.shadowOffset = CGSize.zero
+        viewLoading.layer.shadowRadius = 5
+        viewLoading.layer.shadowPath = UIBezierPath(rect: viewLoading.bounds).cgPath
+        viewLoading.layer.shouldRasterize = true
+
+        superview.addSubview(viewLoading)
+
+        return superview
+    }()
 
     private func request<T: Decodable>(of type: T.Type,
                                        forPath path: String,
@@ -33,15 +69,13 @@ class NetworkManager {
                                        headers: HTTPHeaders? = nil,
                                        showLoadingView: Bool = false,
                                        completion: @escaping (Decodable?, Error?) -> Void) {
-        var viewLoading: UIView!
-        if showLoadingView {
-            viewLoading = loadingView()
-            if let window = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first {
-                window.addSubview(viewLoading)
-            }
-
-            eaAlert = EAAlert(message: "Please check your internet connection!")
+        if showLoadingView,
+            let loadingView = loadingView,
+            let window = self.window {
+            loadingView.isHidden = false
+            window.addSubview(loadingView)
         }
+        eaAlert = EAAlert(message: "Please check your internet connection!")
 
         var inlineHeaders: HTTPHeaders = [:]
         inlineHeaders["Accept"] = "*/*"
@@ -75,28 +109,23 @@ class NetworkManager {
                        headers: inlineHeaders)
                 .validate(statusCode: 200..<400)
                 .responseDecodable(of: type) { (response) in
-                    if let viewLoading = viewLoading {
-                        viewLoading.isHidden = true
-                    }
+                    self.loadingView?.isHidden = true
                     switch response.result {
-                    case .success(_):
-                        guard let responseValue = response.value else { return }
-                        completion(responseValue, nil)
+                    case .success(let value):
+                        completion(value, nil)
                         if self.shouldShowLogs {
-                            print("\n------- RESPONSE: ------\n \(responseValue)\n--------------------------\n")
+                            print("\n------- RESPONSE: ------\n \(value)\n--------------------------\n")
                         }
-                    case .failure(_):
-                        completion(nil, response.error)
+                    case .failure(let error):
+                        completion(nil, error)
                         if self.shouldShowLogs {
-                            print("\n-------- ERROR: --------\n \(String(describing: response.error))\n-------------------------\n")
+                            print("\n-------- ERROR: --------\n \(String(describing: error))\n-------------------------\n")
                         }
                     }
                 }
-        } else if let eaAlert = eaAlert {
-            if let viewLoading = viewLoading {
-                viewLoading.isHidden = true
-            }
-            eaAlert.show()
+        } else {
+            loadingView?.isHidden = true
+            eaAlert?.show()
         }
     }
 
@@ -109,8 +138,6 @@ class NetworkManager {
                 completion(.success(response))
             } else if let error = error {
                 completion(.failure(error))
-            } else {
-                completion(.failure(NetworkError.objectParseError))
             }
         }
     }
@@ -124,8 +151,6 @@ class NetworkManager {
                 completion(.success(response))
             } else if let error = error {
                 completion(.failure(error))
-            } else {
-                completion(.failure(NetworkError.objectParseError))
             }
         }
     }
@@ -139,38 +164,8 @@ class NetworkManager {
                 completion(.success(response))
             } else if let error = error {
                 completion(.failure(error))
-            } else {
-                completion(.failure(NetworkError.objectParseError))
             }
         }
-    }
-
-    func loadingView() -> UIView {
-        guard let window = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first else { return UIView() }
-
-        let superview = UIView(frame: window.bounds)
-        superview.backgroundColor = UIColor(white: 1, alpha: 0.5)
-
-        let viewLoading = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        viewLoading.center = CGPoint(x: window.bounds.width/2, y: window.bounds.height/2)
-        viewLoading.backgroundColor = appColor
-        let aivLoading = UIActivityIndicatorView(frame: CGRect(x: 15, y: 15, width: 20, height: 20))
-        if #available(iOS 13.0, *) {
-            aivLoading.style = .large
-        }
-        aivLoading.startAnimating()
-        viewLoading.addSubview(aivLoading)
-        viewLoading.layer.cornerRadius = 5
-        viewLoading.layer.shadowColor = UIColor.black.cgColor
-        viewLoading.layer.shadowOpacity = 0.66
-        viewLoading.layer.shadowOffset = CGSize.zero
-        viewLoading.layer.shadowRadius = 5
-        viewLoading.layer.shadowPath = UIBezierPath(rect: viewLoading.bounds).cgPath
-        viewLoading.layer.shouldRasterize = true
-
-        superview.addSubview(viewLoading)
-
-        return superview
     }
 
 }
