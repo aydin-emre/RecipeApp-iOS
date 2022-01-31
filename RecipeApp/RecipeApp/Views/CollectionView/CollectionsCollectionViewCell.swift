@@ -18,16 +18,12 @@ class CollectionsCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(with collection: Collection) {
-        DispatchQueue.global(qos: .background).async {
-            if let previewImageUrls = collection.previewImageUrls {
-                let previewImageUrlsCount = previewImageUrls.count
-                let arrayCount = min(self.cardView.cardViewImages.count, previewImageUrlsCount)
-                for i in 0..<arrayCount {
-                    if let url = URL(string: previewImageUrls[i]) {
-                        DispatchQueue.main.async {
-                            self.cardView.cardViewImages[i].sd_setImage(with: url)
-                        }
-                    }
+        if let previewImageUrls = collection.previewImageUrls {
+            let previewImageUrlsCount = previewImageUrls.count
+            let arrayCount = min(self.cardView.cardViewImages.count, previewImageUrlsCount)
+            for i in 0..<arrayCount {
+                if let url = URL(string: previewImageUrls[i]) {
+                    self.cardView.cardViewImages[i].sd_setImage(with: url)
                 }
             }
         }

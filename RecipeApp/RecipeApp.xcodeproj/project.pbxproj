@@ -230,13 +230,13 @@
 			isa = PBXGroup;
 			children = (
 				C386096027A082F7006A98B6 /* Extensions */,
+				C386095D27A082E2006A98B6 /* Helpers */,
 				C386095F27A082EF006A98B6 /* Managers */,
 				0629C3EC27A8272B008F3A04 /* Repositories */,
 				C386095E27A082E8006A98B6 /* Models */,
-				C386095D27A082E2006A98B6 /* Helper */,
-				C386095C27A082DA006A98B6 /* ViewControllers */,
 				C386095B27A082D4006A98B6 /* Views */,
 				C386095827A0818A006A98B6 /* ViewModels */,
+				C386095C27A082DA006A98B6 /* ViewControllers */,
 				C386095727A08183006A98B6 /* Storyboards */,
 				C386095627A08173006A98B6 /* Resources */,
 				C386093327A08002006A98B6 /* Info.plist */,
@@ -311,13 +311,13 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		C386095D27A082E2006A98B6 /* Helper */ = {
+		C386095D27A082E2006A98B6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				C3C85A1E27A3022700FFF6C4 /* Alert.swift */,
 				C398F49127A725B100819C39 /* NetworkError.swift */,
 			);
-			path = Helper;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		C386095E27A082E8006A98B6 /* Models */ = {
