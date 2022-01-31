@@ -12,18 +12,21 @@ import RxCocoa
 
 class CollectionRecipesTests: XCTestCase {
 
+    private var localRecipesRepository: LocalRecipesRepository!
     private var recipesViewModel: RecipesViewModel!
     private var disposeBag: DisposeBag!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         try super.setUpWithError()
-        recipesViewModel = RecipesViewModel(recipesProtocol: LocalRecipesRepository(), collectionId: 1)
+        localRecipesRepository = LocalRecipesRepository()
+        recipesViewModel = RecipesViewModel(recipesProtocol: localRecipesRepository, collectionId: 1)
         disposeBag = DisposeBag()
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        localRecipesRepository = nil
         recipesViewModel = nil
         disposeBag = nil
         try super.tearDownWithError()
