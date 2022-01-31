@@ -14,7 +14,7 @@ class CollectionsViewModel: BaseViewModel {
     let collections: PublishSubject<Collections> = PublishSubject()
     private let collectionsProtocol: CollectionsProtocol
 
-    init(_ collectionsProtocol: CollectionsProtocol = NetworkCollections()) {
+    init(collectionsProtocol: CollectionsProtocol) {
         self.collectionsProtocol = collectionsProtocol
     }
 

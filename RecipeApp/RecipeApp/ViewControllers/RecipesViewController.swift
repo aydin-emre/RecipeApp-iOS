@@ -24,7 +24,7 @@ class RecipesViewController: BaseViewController {
     }
 
     required init?(coder: NSCoder) {
-        recipesViewModel = RecipesViewModel()
+        recipesViewModel = RecipesViewModel(recipesProtocol: NetworkRecipesRepository())
         super.init(coder: coder)
     }
 
@@ -32,6 +32,7 @@ class RecipesViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.title = "Recipes"
         // Do any additional setup after loading the view.
         setupBindings()
         recipesViewModel.requestData()

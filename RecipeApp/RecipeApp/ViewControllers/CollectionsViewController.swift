@@ -13,11 +13,12 @@ class CollectionsViewController: BaseViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
 
-    private let collectionsViewModel = CollectionsViewModel()
+    private let collectionsViewModel = CollectionsViewModel(collectionsProtocol: NetworkCollectionsRepository())
     private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.title = "Collections"
         // Do any additional setup after loading the view.
         setupBindings()
         collectionsViewModel.requestData()
@@ -59,7 +60,7 @@ class CollectionsViewController: BaseViewController {
                 print(model)
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let viewController = storyBoard.instantiateViewController(identifier: "RecipesViewController") { coder in
-                    RecipesViewController(coder: coder, viewModel: RecipesViewModel(collectionId: model.id))
+                    RecipesViewController(coder: coder, viewModel: RecipesViewModel(recipesProtocol: NetworkRecipesRepository(), collectionId: model.id))
                 }
                 self.navigationController?.pushViewController(viewController, animated: true)
             }).disposed(by: disposeBag)

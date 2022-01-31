@@ -11,10 +11,6 @@ import EAAlert
 
 private let baseURL: String = "https://cookpad.github.io/global-mobile-hiring/api/"
 
-private let allRecipesPath = "recipes/"
-private let allCollectionsPath = "collections/"
-private let collectionRecipesPath = "collections/%@/recipes"
-
 class NetworkManager {
 
     // MARK: - Shared Manager
@@ -61,14 +57,7 @@ class NetworkManager {
         return superview
     }()
 
-    private func request<T: Decodable>(of type: T.Type,
-                                       forPath path: String,
-                                       method: HTTPMethod = .post,
-                                       parameters: Parameters? = nil,
-                                       encoding: ParameterEncoding = URLEncoding.default,
-                                       headers: HTTPHeaders? = nil,
-                                       showLoadingView: Bool = false,
-                                       completion: @escaping (Decodable?, Error?) -> Void) {
+    func request<T: Decodable>(of type: T.Type, for path: String, method: HTTPMethod = .post, parameters: Parameters? = nil, encoding: ParameterEncoding = URLEncoding.default, headers: HTTPHeaders? = nil, showLoadingView: Bool = false, completion: @escaping (Decodable?, Error?) -> Void) {
         if showLoadingView,
             let loadingView = loadingView,
             let window = self.window {
@@ -126,45 +115,6 @@ class NetworkManager {
         } else {
             loadingView?.isHidden = true
             eaAlert?.show()
-        }
-    }
-
-    func getAllCollections(completion: @escaping (Result<Collections, Error>) -> Void) {
-        request(of: Collections.self,
-                forPath: allCollectionsPath,
-                method: .get,
-                showLoadingView: true) { response, error in
-            if let response = response as? Collections {
-                completion(.success(response))
-            } else if let error = error {
-                completion(.failure(error))
-            }
-        }
-    }
-
-    func getCollectionRecipes(with collectionId: Int, completion: @escaping (Result<Recipes, Error>) -> Void) {
-        request(of: Recipes.self,
-                forPath: String(format: collectionRecipesPath, String(collectionId)),
-                method: .get,
-                showLoadingView: true) { response, error in
-            if let response = response as? Recipes {
-                completion(.success(response))
-            } else if let error = error {
-                completion(.failure(error))
-            }
-        }
-    }
-
-    func getAllRecipes(completion: @escaping (Result<Recipes, Error>) -> Void) {
-        request(of: Recipes.self,
-                forPath: allRecipesPath,
-                method: .get,
-                showLoadingView: true) { response, error in
-            if let response = response as? Recipes {
-                completion(.success(response))
-            } else if let error = error {
-                completion(.failure(error))
-            }
         }
     }
 

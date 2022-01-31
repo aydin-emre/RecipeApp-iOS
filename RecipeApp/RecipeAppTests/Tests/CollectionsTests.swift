@@ -6,37 +6,45 @@
 //
 
 import XCTest
+import RxSwift
+import RxCocoa
 @testable import RecipeApp
 
 class CollectionsTests: XCTestCase {
 
-    var collections: Collections?
+    private var collectionsViewModel: CollectionsViewModel!
+    private var disposeBag: DisposeBag!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         try super.setUpWithError()
-        let bundle = Bundle(for: type(of: self))
-        collections = bundle.decode(fromJSON: "Collections", of: Collections.self)
+        collectionsViewModel = CollectionsViewModel(collectionsProtocol: LocalCollectionsRepository())
+        disposeBag = DisposeBag()
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        collections = nil
+        collectionsViewModel = nil
+        disposeBag = nil
         try super.tearDownWithError()
     }
 
     func testFirstCollectionDecoding() throws {
-        let firstCollection = collections?.first
-        XCTAssertEqual(firstCollection?.title, "Taste of Japan 🇯🇵")
-        XCTAssertEqual(firstCollection?.recipeCount, 19)
-        XCTAssertEqual(firstCollection?.previewImageUrls?.count, 4)
-    }
+        let expectation = expectation(description: "Service Call")
+        defer {
+            collectionsViewModel.requestData()
+            wait(for: [expectation], timeout: 1)
+        }
 
-    func testLastCollectionDecoding() throws {
-        let lastCollection = collections?.last
-        XCTAssertEqual(lastCollection?.title, "Top Picks 🥇")
-        XCTAssertEqual(lastCollection?.recipeCount, 19)
-        XCTAssertEqual(lastCollection?.previewImageUrls?.count, 4)
+        collectionsViewModel
+            .collections
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { collections in
+                let firstCollection = collections.first
+                XCTAssertEqual(firstCollection?.title, "Taste of Japan 🇯🇵")
+                expectation.fulfill()
+            })
+            .disposed(by: disposeBag)
     }
 
 }
