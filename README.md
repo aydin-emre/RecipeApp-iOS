@@ -32,7 +32,7 @@ This is an example app written by Emre AYDIN on 01.31.2022<br>
 
 ## How To Setup Project
 I have used several dependencies through CocoaPods but I excluded pods folder and some other redundant files.<br>
-However, we need to install them on our pc. Go to RecipeApp directory and call pod install command.
+However, we need to install them on our pc. Go to RecipeApp directory and run pod install command.
 
 ```ruby
 pod install
