@@ -42,14 +42,14 @@ When you run this command, RecipeApp.xcworkspace file will be created.<br>
 And, run the project by clicking on this file.
 
 ## About Project
-In this project I used Alamofire for networking, EAAlert for custom alerts, RxSwift/RxCocoa for reactive programming, and SDWebImage for loading images.<br>
+In this project, I have used Alamofire for networking, EAAlert for custom alerts, RxSwift/RxCocoa for reactive programming, and SDWebImage for loading images.<br>
 By the way, [EAAlert](https://cocoapods.org/pods/EAAlert) was developed by me and that's why I especially used it :)<br>
 This project contains two screens which show collections and recipes. When you click on any collection, recipes screen will be presented to show the recipes in the collection.<br>
 There are two custom views for collections and recipes. And, they are used in uicollectionviewcells.<br>
 I have tried to adapt SOLID principles.<br>
-I have created some shared instances to make it singleton.<br>
-I have created Repository and Protocols and used them for injections.<br>
-I have created some extensions to prevent repeating myself.<br>
+I have created some shared instances to ensure that a class only has one instance, ie. Singleton.<br>
+I have created Repositories and Protocols and I have used them for injections.<br>
+I have created some extensions to prevent to repeat myself.<br>
 I have used MVVM design pattern with reactive programming.<br>
 
 ## Additionally
