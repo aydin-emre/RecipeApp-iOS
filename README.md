@@ -10,7 +10,7 @@ This is an example app written by Emre AYDIN on 01.31.2022<br>
     <li>Unit Tests written to check proper decoding of collections and recipes.</li>
 </ul>
 
-<h3>Screenshots</h3>
+## Screenshots
 <table>
   <tr>
     <td>
