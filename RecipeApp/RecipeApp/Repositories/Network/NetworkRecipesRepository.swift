@@ -15,7 +15,7 @@ protocol RecipesProtocol {
 class NetworkRecipesRepository: RecipesProtocol {
 
     func getAllRecipes(completion: @escaping (Result<Recipes, Error>) -> Void) {
-        NetworkManager.shared.request(of: Recipes.self, for: NetworkPath.allRecipesPath.rawValue,
+        NetworkManager.shared.request(of: Recipes.self, for: NetworkPath.allRecipesPath,
                                       method: .get, showLoadingView: true) { response, error in
             if let response = response as? Recipes {
                 completion(.success(response))
@@ -26,7 +26,7 @@ class NetworkRecipesRepository: RecipesProtocol {
     }
 
     func getRecipes(with collectionId: Int, completion: @escaping (Result<Recipes, Error>) -> Void) {
-        NetworkManager.shared.request(of: Recipes.self, for: String(format: NetworkPath.collectionRecipesPath.rawValue, String(collectionId)),
+        NetworkManager.shared.request(of: Recipes.self, for: String(format: NetworkPath.collectionRecipesPath, String(collectionId)),
                                       method: .get, showLoadingView: true) { response, error in
             if let response = response as? Recipes {
                 completion(.success(response))

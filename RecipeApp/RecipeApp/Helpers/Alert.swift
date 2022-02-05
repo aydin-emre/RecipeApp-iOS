@@ -12,14 +12,14 @@ class Alert: EAAlert {
 
     override var positiveButtonTextColor: UIColor {
         get {
-            return appColor
+            return Color.appColor
         }
         set {}
     }
 
     override var negativeButtonTextColor: UIColor {
         get {
-            return appColor
+            return Color.appColor
         }
         set {}
     }

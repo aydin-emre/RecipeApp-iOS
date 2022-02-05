@@ -16,6 +16,8 @@ class CollectionsViewController: BaseViewController {
     private let collectionsViewModel = CollectionsViewModel(collectionsProtocol: NetworkCollectionsRepository())
     private let disposeBag = DisposeBag()
 
+    // MARK: - View Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.title = "Collections"

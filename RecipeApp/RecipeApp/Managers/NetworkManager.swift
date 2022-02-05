@@ -9,14 +9,12 @@ import Foundation
 import Alamofire
 import EAAlert
 
-private let baseURL: String = "https://cookpad.github.io/global-mobile-hiring/api/"
-
 class NetworkManager {
 
-    // MARK: - Shared Manager
+    // MARK: - Initialization
 
-    static var shared = NetworkManager()
-
+    private init() {}
+    static let shared = NetworkManager()
     var shouldShowLogs = true
 
     // MARK: - Custom Views
@@ -35,7 +33,7 @@ class NetworkManager {
 
         let viewLoading = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         viewLoading.center = CGPoint(x: windowBounds.width/2, y: windowBounds.height/2)
-        viewLoading.backgroundColor = appColor
+        viewLoading.backgroundColor = Color.appColor
         let activityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 15, y: 15, width: 20, height: 20))
         if #available(iOS 13.0, *) {
             activityIndicatorView.style = .large
@@ -56,6 +54,8 @@ class NetworkManager {
 
         return superview
     }()
+
+    // MARK: - Request
 
     func request<T: Decodable>(of type: T.Type, for path: String, method: HTTPMethod = .post, parameters: Parameters? = nil, encoding: ParameterEncoding = URLEncoding.default, headers: HTTPHeaders? = nil, showLoadingView: Bool = false, completion: @escaping (Decodable?, Error?) -> Void) {
         if showLoadingView,
@@ -85,13 +85,13 @@ class NetworkManager {
         }
 
         if shouldShowLogs {
-            print("\n---------- URL: ----------\n \(baseURL+path)\n--------------------------\n")
+            print("\n---------- URL: ----------\n \(NetworkPath.baseURL+path)\n--------------------------\n")
             print("\n------- HEADERS: -------\n \(inlineHeaders)\n--------------------------\n")
             print("\n----- PARAMETERS: -----\n \(inlineParameters)\n--------------------------\n")
         }
 
         if let networkReachabilityManager = NetworkReachabilityManager(), networkReachabilityManager.isReachable {
-            AF.request(baseURL+path,
+            AF.request(NetworkPath.baseURL+path,
                        method: method,
                        parameters: inlineParameters,
                        encoding: encoding,

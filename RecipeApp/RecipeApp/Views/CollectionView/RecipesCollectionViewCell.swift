@@ -23,11 +23,13 @@ class RecipesCollectionViewCell: UICollectionViewCell {
             self.recipeView.imageView.sd_setImage(with: url,
                                                   placeholderImage: UIImage(named: "preview"),
                                                   options: .continueInBackground) { _, _, _ in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
                     self.recipeView.activityIndicator.startAnimating()
                 }
             } completed: { _, _, _, _ in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
                     self.recipeView.activityIndicator.stopAnimating()
                 }
             }

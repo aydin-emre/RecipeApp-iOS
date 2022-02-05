@@ -14,7 +14,7 @@ protocol CollectionsProtocol {
 class NetworkCollectionsRepository: CollectionsProtocol {
 
     func getCollections(completion: @escaping (Result<Collections, Error>) -> Void) {
-        NetworkManager.shared.request(of: Collections.self, for: NetworkPath.allCollectionsPath.rawValue,
+        NetworkManager.shared.request(of: Collections.self, for: NetworkPath.allCollectionsPath,
                                       method: .get, showLoadingView: true) { response, error in
             if let response = response as? Collections {
                 completion(.success(response))
