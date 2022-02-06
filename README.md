@@ -60,7 +60,3 @@ And also, I was planning to create ViewControllers from a TabBarController class
 ## Author
 
 aydin-emre, www.emr.ee
-
-## License
-
-EAAlert is available under the MIT license. See the LICENSE file for more info.
