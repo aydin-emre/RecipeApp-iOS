@@ -9,12 +9,19 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class RecipesViewController: BaseViewController {
+final class RecipesViewController: BaseViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet var collectionView: UICollectionView!
 
     private let recipesViewModel: RecipesViewModel
     private let disposeBag = DisposeBag()
+    private lazy var flowLayout: UICollectionViewFlowLayout = {
+        let flowLayout = UICollectionViewFlowLayout()
+        let width = view.frame.size.width - 8
+        let height = view.frame.size.height / 6
+        flowLayout.itemSize = CGSize(width: width, height: height)
+        return flowLayout
+    }()
 
     // MARK: - Initialization
 
@@ -60,10 +67,6 @@ class RecipesViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
 
-        let flowLayout = UICollectionViewFlowLayout()
-        let width = view.frame.size.width - 8
-        let height = view.frame.size.height / 6
-        flowLayout.itemSize = CGSize(width: width, height: height)
         collectionView.setCollectionViewLayout(flowLayout, animated: true)
 
         // For Categories CollectionView Animation

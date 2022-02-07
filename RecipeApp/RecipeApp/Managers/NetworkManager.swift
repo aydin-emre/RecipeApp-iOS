@@ -32,7 +32,7 @@ class NetworkManager {
         superview.backgroundColor = UIColor(white: 1, alpha: 0.5)
 
         let viewLoading = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        viewLoading.center = CGPoint(x: windowBounds.width/2, y: windowBounds.height/2)
+        viewLoading.center = CGPoint(x: windowBounds.width / 2, y: windowBounds.height / 2)
         viewLoading.backgroundColor = Color.appColor
         let activityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 15, y: 15, width: 20, height: 20))
         if #available(iOS 13.0, *) {

@@ -9,7 +9,7 @@ import Foundation
 
 typealias Collections = [Collection]
 
-struct Collection: Codable {
+struct Collection: Decodable {
 
     let id: Int?
     let title: String?

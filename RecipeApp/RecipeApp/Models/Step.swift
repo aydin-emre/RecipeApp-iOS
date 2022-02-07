@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Step: Codable {
+struct Step: Decodable {
 
     let stepDescription: String?
     let imageUrls: [String]?

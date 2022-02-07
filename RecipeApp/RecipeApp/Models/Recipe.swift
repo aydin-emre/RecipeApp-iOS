@@ -9,7 +9,7 @@ import Foundation
 
 typealias Recipes = [Recipe]
 
-struct Recipe: Codable {
+struct Recipe: Decodable {
 
     let id: Int?
     let title: String?

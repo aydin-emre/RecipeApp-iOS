@@ -9,12 +9,19 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class CollectionsViewController: BaseViewController {
+final class CollectionsViewController: BaseViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet var collectionView: UICollectionView!
 
     private let collectionsViewModel = CollectionsViewModel(collectionsProtocol: NetworkCollectionsRepository())
     private let disposeBag = DisposeBag()
+    private lazy var flowLayout: UICollectionViewFlowLayout = {
+        let flowLayout = UICollectionViewFlowLayout()
+        let width = view.frame.size.width - 16
+        let height = width + 120
+        flowLayout.itemSize = CGSize(width: width, height: height)
+        return flowLayout
+    }()
 
     // MARK: - View Life Cycle
 
@@ -48,10 +55,6 @@ class CollectionsViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
 
-        let flowLayout = UICollectionViewFlowLayout()
-        let width = view.frame.size.width - 16
-        let height = width + 120
-        flowLayout.itemSize = CGSize(width: width, height: height)
         collectionView.setCollectionViewLayout(flowLayout, animated: true)
 
         // CollectionView Selections

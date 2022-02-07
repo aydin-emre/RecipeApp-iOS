@@ -10,7 +10,7 @@ import SDWebImage
 
 class RecipesCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var recipeView: RecipeView!
+    @IBOutlet var recipeView: RecipeView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

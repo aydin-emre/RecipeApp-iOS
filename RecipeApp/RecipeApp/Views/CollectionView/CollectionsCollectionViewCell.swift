@@ -10,7 +10,7 @@ import SDWebImage
 
 class CollectionsCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var cardView: CardView!
+    @IBOutlet var cardView: CardView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
