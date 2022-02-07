@@ -38,7 +38,7 @@ final class CollectionsViewController: BaseViewController {
         collectionsViewModel
             .error
             .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { error in
+            .subscribe(onNext: { [unowned self] error in
                 self.alert.setMessage(error)
                 self.alert.show()
             })
@@ -62,7 +62,6 @@ final class CollectionsViewController: BaseViewController {
             .rx
             .modelSelected(Collection.self)
             .subscribe(onNext: { [unowned self] model in
-                print(model)
                 let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let viewController = storyBoard.instantiateViewController(identifier: "RecipesViewController") { coder in
                     RecipesViewController(coder: coder, viewModel: RecipesViewModel(recipesProtocol: NetworkRecipesRepository(), collectionId: model.id))

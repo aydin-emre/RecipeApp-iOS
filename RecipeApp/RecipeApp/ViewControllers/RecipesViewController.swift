@@ -50,7 +50,7 @@ final class RecipesViewController: BaseViewController {
         recipesViewModel
             .error
             .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { error in
+            .subscribe(onNext: { [unowned self] error in
                 self.alert.setMessage(error)
                 self.alert.show()
             })
