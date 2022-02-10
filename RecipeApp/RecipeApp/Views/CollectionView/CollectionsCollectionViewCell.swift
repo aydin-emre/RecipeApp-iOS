@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class CollectionsCollectionViewCell: UICollectionViewCell {
+final class CollectionsCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var cardView: CardView!
 

@@ -7,15 +7,12 @@
 
 import Foundation
 
-class LocalCollectionsRepository: CollectionsProtocol {
+final class LocalCollectionsRepository: CollectionsProtocol {
 
     func getCollections(completion: @escaping (Result<Collections, Error>) -> Void) {
         let bundle = Bundle(for: type(of: self))
-        if let response = bundle.decode(fromJSON: "Collections", of: Collections.self) {
-            completion(.success(response))
-        } else {
-            completion(.failure(NetworkError.objectParseError))
-        }
+        let response = bundle.decode(fromJSON: "Collections", of: Collections.self)
+        completion(.success(response))
     }
 
 }

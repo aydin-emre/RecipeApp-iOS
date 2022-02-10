@@ -27,13 +27,13 @@ final class CollectionsViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.title = "Collections"
+        tabBarController?.title = ViewControllerTitles.collections
         // Do any additional setup after loading the view.
         setupBindings()
         collectionsViewModel.requestData()
     }
 
-    func setupBindings() {
+    private func setupBindings() {
         // Error Handling
         collectionsViewModel
             .error

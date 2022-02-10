@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecipeView: UIView {
+final class RecipeView: UIView {
 
     @IBOutlet var contentView: UIView!
     @IBOutlet var imageView: UIImageView!

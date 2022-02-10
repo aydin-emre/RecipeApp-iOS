@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class RecipesViewModel: BaseViewModel {
+final class RecipesViewModel: BaseViewModel {
 
     let recipes: PublishSubject<Recipes> = PublishSubject()
     private let recipesProtocol: RecipesProtocol

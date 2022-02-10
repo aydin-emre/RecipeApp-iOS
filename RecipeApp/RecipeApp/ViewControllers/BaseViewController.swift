@@ -11,14 +11,16 @@ class BaseViewController: UIViewController {
 
     var alert: Alert!
 
-    func initialSetup() {
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
-    }
+    // MARK: - View Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
         alert = Alert()
+    }
+
+    private func initialSetup() {
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {

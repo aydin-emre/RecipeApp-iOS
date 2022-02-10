@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class RecipesCollectionViewCell: UICollectionViewCell {
+final class RecipesCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var recipeView: RecipeView!
 

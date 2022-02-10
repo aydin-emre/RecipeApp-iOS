@@ -8,7 +8,7 @@
 import UIKit
 import EAAlert
 
-class Alert: EAAlert {
+final class Alert: EAAlert {
 
     override var positiveButtonTextColor: UIColor {
         get {

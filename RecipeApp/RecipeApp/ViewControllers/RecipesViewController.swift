@@ -39,13 +39,13 @@ final class RecipesViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.title = "Recipes"
+        tabBarController?.title = ViewControllerTitles.recipes
         // Do any additional setup after loading the view.
         setupBindings()
         recipesViewModel.requestData()
     }
 
-    func setupBindings() {
+    private func setupBindings() {
         // Error Handling
         recipesViewModel
             .error

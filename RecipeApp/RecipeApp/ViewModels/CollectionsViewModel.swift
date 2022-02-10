@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class CollectionsViewModel: BaseViewModel {
+final class CollectionsViewModel: BaseViewModel {
 
     let collections: PublishSubject<Collections> = PublishSubject()
     private let collectionsProtocol: CollectionsProtocol

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CardView: UIView {
+final class CardView: UIView {
 
     @IBOutlet var contentView: UIView!
     @IBOutlet var imageView1: UIImageView!

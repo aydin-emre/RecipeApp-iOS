@@ -7,8 +7,13 @@
 
 import UIKit
 
+enum ViewControllerTitles {
+    static let collections = "Collections"
+    static let recipes = "Recipes"
+}
+
 enum NetworkPath {
-    static let baseURL: String = "https://cookpad.github.io/global-mobile-hiring/api/"
+    static let baseURL = "https://cookpad.github.io/global-mobile-hiring/api/"
     static let allCollectionsPath = "collections/"
     static let allRecipesPath = "recipes/"
     static let collectionRecipesPath = "collections/%@/recipes"
